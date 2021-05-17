@@ -14,7 +14,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <fcntl.h>
+#ifndef __OpenBSD__
 #include <sys/timeb.h>
+#endif
 #include <signal.h>
 #include <avs_internal.c>
 
@@ -59,9 +61,12 @@ void sigintHandler(int sig_num)
 
 int64_t avs2yuv_mdate(void)
 {
+#ifndef __OpenBSD__
     struct timeb tb;
     ftime(&tb);
     return ((int64_t)tb.time * 1000 + (int64_t)tb.millitm) * 1000;
+#endif
+    return 0;
 }
 
 int main(int argc, const char* argv[])

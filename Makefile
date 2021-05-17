@@ -25,7 +25,11 @@ else
 ifeq ($(UNAME_S),Haiku)
 	LDFLAGS += -lroot
 else
+ifeq ($(UNAME_S),OpenBSD)
+	LDFLAGS += -pthread
+else
 	LDFLAGS += -ldl -pthread
+endif
 endif
 	CCFLAGS += $(shell pkg-config --cflags avisynth)
 endif
