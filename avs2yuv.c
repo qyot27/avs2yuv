@@ -15,7 +15,7 @@
 #include <string.h>
 #include <fcntl.h>
 #include <signal.h>
-#include <avs_internal.c>
+#include "avs_internal.c"
 
 #if defined(AVS_POSIX)
 #include <unistd.h>
